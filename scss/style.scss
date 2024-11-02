@@ -76,6 +76,7 @@ body {
   z-index: 10;
   border: 1px black solid;
   transition: all .3s ease;
+  overflow: hidden;
 }
 
 #btn3::after  {
@@ -87,7 +88,7 @@ body {
   height: 100%;
   background-color: rgba($color: #ffffff, $alpha: 0.4);
   transform: skew(165deg, 0);
-  transition: all .7s ease;
+  transition: all .4s ease;
   z-index: -1;
 }
 
@@ -137,20 +138,52 @@ body {
   animation: polygons 8s linear infinite;
 }
 
+div:has(>#shape2)::after {
+  content: "";
+  background-color: black;
+  width: 80px;
+  height: 80px;
+  clip-path: circle(50% at 50% 50%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: cover 8s linear infinite;
+}
+
+// #shape2::after {
+//   content: "";
+//   background-color: green;
+//   width: 80px;
+//   height: 80px;
+//   clip-path: circle(50% at 50% 50%);
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   animation: cover 8s linear infinite;
+// }
+
+
+
 @keyframes polygons {
   0% {
     top: 0;
     left: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0);
   }
   25% {
     top: 0;
     left: calc(100% - 80px);
-    clip-path: circle();
+    clip-path: polygon(50% 10%, 65% 10%, 85% 85%, 15% 85%, 35% 10%);
   }
+  // 37.5% {
+  //   top: 50%;
+  //   left: calc(100% - 80px);
+  //   clip-path: polygon(50% 0%, 80% 0, 100% 100%, 0 100%, 20% 0);
+  // }
   50% {
     top: calc(100% - 80px);
     left: calc(100% - 80px);
-    clip-path: polygon(50% 0, 0 100%, 100% 100%);
+    clip-path: polygon(50% 0%, 50% 0, 100% 100%, 0 100%, 50% 0);
   }
   75% {
     top: calc(100% - 80px);
@@ -160,9 +193,42 @@ body {
   100% {
     top: 0;
     left: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0);
   }
 }
 
+@keyframes cover {
+  0% {
+    top: 0;
+    left: 0;
+    clip-path: circle(70% at 50% 50%);
+  }
+  25% {
+    top: 0;
+    left: calc(100% - 80px);
+    clip-path: circle(50% at 50% 50%);
+  }
+  // 37.5% {
+  //   top: 50%;
+  //   left: calc(100% - 80px);
+  //   clip-path: circle(0% at 50% 50%);
+  // }
+  50% {
+    top: calc(100% - 80px);
+    left: calc(100% - 80px);
+    clip-path: circle(0% at 50%  50%);
+  }
+  75% {
+    top: calc(100% - 80px);
+    left: 0;
+    clip-path: circle(0% at 50% 50%);
+  }
+  100% {  
+    top: 0;
+    left: 0;
+    clip-path: circle(0% at 50% 50%);
+  }
+}
 
 #figure1 {
   position: relative;
